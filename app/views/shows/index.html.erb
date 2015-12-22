@@ -7,7 +7,11 @@
     <%= link_to show_path(s) do %>
 
       <h2><%= s.title %></h2>
+      <% if s.image_url == "https://s3.amazonaws.com/bit-photos/artistLarge.jpg" %>
+       <img class="picture" src="/assets/icon-b.jpg" alt="">
+       <% else %>
       <img class="picture" src="<%=s.image_url%>" alt="">
+      <% end %>
 
       <p> <strong>Date: </strong> <%=s.showdate%></p>
 
