@@ -7,18 +7,16 @@
 
   <li class="line3">
     <%= link_to show_path(s) do %>
-
+      <div class="blurb">
       <h2><%= s.title %></h2>
       <% if s.image_url == "https://s3.amazonaws.com/bit-photos/artistLarge.jpg" %>
        <img class="picture" src="/assets/icon-b.jpg" alt="">
        <% else %>
       <img class="picture" src="<%=s.image_url%>" alt="">
       <% end %>
-
       <p> <strong>Date: </strong> <%=s.showdate%></p>
-
-
       <h4>Venue: <%=s.venue%></h4>
+      </div>
       <% end %>
   </li>
 
