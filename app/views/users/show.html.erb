@@ -1,6 +1,18 @@
 
 
 <div data-role='content'>
+<!-- <p>
+ <% if @user.image_url == "https://s3.amazonaws.com/bit-photos/artistLarge.jpg" %>
+       <img class="picture" src="/assets/icon-b.jpg" alt="">
+       <% else %>
+      <img class="picture" src="<%=@user.image_url%>" alt="">
+      <% end %>
+      </p> -->
+
+      <p>
+        <img class="picture" src="/assets/icon-b.jpg" alt="">
+      </p>
+
 <p><%= @user.username %></p>
 
 <p><%= @user.follow_count %></p>

@@ -19,7 +19,7 @@ class ResetsController < ApplicationController
     if @user
       # will render edit view
     else
-      redirect_to login_path, alert: "Invalid reset token"
+      redirect_to login_path, alert: "Invalide reset token"
     end
   end
 
