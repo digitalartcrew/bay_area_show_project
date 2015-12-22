@@ -1,20 +1,19 @@
 
    <div data-role="header">
     
-
-    
-
     
     <div data-role="navbar">
     <ul>
-    <li><%= link_to "Home", root_path, data: {icon:'home'} %></li>
+    
+   
 
-    <% if current_user %>
+ <!--    <% if current_user %>
     <li><%= link_to "Profile", current_user, data: {icon:'user'} %></li>
-    <% end %>
+    <% end %> -->
 
     <% if current_user %>
-<li><%= link_to "Search Users", users_path, data: {icon:'grid'} %></li>
+     <li><%= link_to "Home", root_path, data: {icon:'home'} %></li>
+<!-- <li><%= link_to "Search Users", users_path, data: {icon:'grid'} %></li> -->
 <% else %>
 <li><%= link_to "Sign Up", signup_path, data: {icon:'user'} %></li>
 <% end %>
@@ -23,6 +22,7 @@
 
   <% if current_user %>
 <li><%= link_to "Add Show", new_user_show_path(current_user), data: {icon:'plus'} %></li>
+ <li><%= link_to "Update Shows", refresh_path, data: {icon:'grid'} %></li>
 		
 <% end %>
 		<% if current_user %>

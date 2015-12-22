@@ -12,7 +12,41 @@ class ShowsController < ApplicationController
     # session[:user_id] = nil
     ###########################################
 
-    # Show.delete_all
+    # IMAGE LOGIC
+    # If image_url is present, DO NOT MAKE API CALL, if not then make API call.
+    # Which means show = Show.new() and then .save() after api call
+    # All the user-defined shows in the db
+    date = Date.today
+    # Find all shows from today til 3 days from now in DB
+    oneDay = date.tomorrow
+    twoDays = date.tomorrow.tomorrow
+    threeDays = date.tomorrow.tomorrow.tomorrow
+    @shows = Show.where('showdate': date)
+    @tomorrow = Show.where('showdate': oneDay)
+    @dayAfter = Show.where('showdate': twoDays)
+    @dayAfterThat = Show.where('showdate': threeDays)
+
+    # Combine all current shows with future shows
+    @tomorrow.each do |show|
+      @shows.push(show)
+    end
+     @dayAfter.each do |show|
+      @shows.push(show)
+    end
+     @dayAfterThat.each do |show|
+      @shows.push(show)
+    end
+
+    @shows = Show.all
+  end
+
+   def refresh
+
+    # RESET BUTTON
+    # session[:user_id] = nil
+    ###########################################
+    UserShow.delete_all
+    Show.delete_all
     # LIMIT API CALL to Once per site-visit
     n = 2
     t = Time.zone.now
@@ -33,7 +67,6 @@ class ShowsController < ApplicationController
     # delete shows that have "expired"?
 
     @response_body.each do |show|
-
       # date --> gives back a DateTime object
       date = DateTime.parse(show["datetime"])
       unless show["on_sale_datetime"] == nil
@@ -89,14 +122,7 @@ class ShowsController < ApplicationController
         )
     end
 
-    ###########################################
-    # ALL THE ABOVE CODE MAKES AN API CALL FOR THE CURRENT DATE anD STORES EVERYTHING IN THE DB
-
-    # IMAGE LOGIC
-    # If image_url is present, DO NOT MAKE API CALL, if not then make API call.
-    # Which means show = Show.new() and then .save() after api call
-    # All the user-defined shows in the db
-    date = Date.today
+        date = Date.today
     # Find all shows from today til 3 days from now in DB
     oneDay = date.tomorrow
     twoDays = date.tomorrow.tomorrow
@@ -118,10 +144,14 @@ class ShowsController < ApplicationController
     end
 
     @shows = Show.all
-  end
+
+    redirect_to root_path
+
+    ###########################################
+    # ALL THE ABOVE CODE MAKES AN API CALL FOR THE CURRENT DATE anD STORES EVERYTHING IN THE DB
+
+  end # end apiRefresh
   
-
-
   def new
     @show = Show.new
     @current_user

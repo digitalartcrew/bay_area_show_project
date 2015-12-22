@@ -15,32 +15,22 @@
 if (navigator.userAgent.indexOf("Android") != -1) { 
 $.mobile.defaultPageTransition = 'none'; $.mobile.defaultDialogTransition = 'none'; 
 }
- else {$.mobile.defaultPageTransition = 'slide';}
+ else {$.mobile.defaultPageTransition = 'none';}
 </script>
-
-
 </head>
+
 <body>
-
-
 
 <div data-role="page" data-theme="b" id="demo-page" class="my-page">
 
-
     <div data-role="header">
-      <img width='200px'src="/assets/bayday.svg">
-  
-        
-<a href="#" data-icon="star" class="ui-btn-right">
-
-    <% if current_user %>
-<span>Welcome <%=current_user.username%>
-
-
-</span>
-<%end%>
-
-</a>
+    
+        <img  width='200px'src="/assets/bayday.svg">  
+      <a href="#" data-icon="star" class="ui-btn-right">
+          <% if current_user %>
+            <span>Welcome <%=current_user.username%></span>
+          <% end %>
+      </a>
 
   
     </div><!-- /header -->
@@ -48,12 +38,7 @@ $.mobile.defaultPageTransition = 'none'; $.mobile.defaultDialogTransition = 'non
     <!--Add Navbar-->
 <%= render 'layouts/navbar' %>
 
-
-
-
-
-  
 <%= yield %>
-  
+ 
 <%= render 'layouts/footer' %>
 

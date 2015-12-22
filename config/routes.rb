@@ -14,6 +14,7 @@ Rails.application.routes.draw do
 
   post '/attending', to: "shows#attending", as: "attending"
 
+  get '/refresh', to: "shows#refresh", as: "refresh"
 
     
     resources :sessions, only: [:create, :destroy]
